@@ -1,15 +1,12 @@
 %%%%%%%%%%%%%%%%%% Change parameter here %%%%%%%%%%%%%%%%%%%
-stimfolder = '../Data/imageDataset/free_viewing/';% path to your stimuli
-% stimfolder = '../Data/imageDataset/preference/';
-
-savefile = '../Data/freeViewFeatures.mat'; %for free viewing task
-% savefile = './Data/preferenceFeatures.mat' % for preference rating task
+stimfolder = '../../../dataset/videoDataset/footage_frame/footage_001_new/';% path to your stimuli
+savefile = 'footage001.mat'; %for free viewing task
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 files=dir(fullfile(stimfolder,'*.jpg'));
 [filenames{1:size(files,1)}] = deal(files.name);
 
 ALLFeatures = {};
-
+motinfo = []; % information about the previous frame, blank for the first frame
 for i = 1: length(filenames)
     Feature = {};
     Feature.filename = filenames{i};
@@ -18,7 +15,7 @@ for i = 1: length(filenames)
 
     %graphbase
     params = makeGBVSParams;
-     params.channels = 'CIO';
+    params.channels = 'CIOFM';
     params.salmapmaxsize = 48;
     out = gbvs(strcat(stimfolder, Feature.filename),params);
 
@@ -40,7 +37,7 @@ for i = 1: length(filenames)
     params.ittiDeltaLevels = [2 3];
     params.useIttiKochInsteadOfGBVS = 1;
     
-    out = gbvs(strcat(stimfolder, Feature.filename),params);
+    [out,motinfo] = gbvs(strcat(stimfolder, Feature.filename),params, motinfo);
 
     ittikoch = {};
     ittikoch.master_map = out.master_map;
