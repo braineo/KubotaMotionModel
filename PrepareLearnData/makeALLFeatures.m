@@ -33,7 +33,7 @@ for i = 1: length(filenames)
 
     %ittikoch
     params = makeGBVSParams;
-    params.channels = 'CIO';
+    params.channels = 'CIOFM';
     params.salmapmaxsize = 48;
     params.activationType = 2;
     params.normalizeTopChannelMaps = 1;
