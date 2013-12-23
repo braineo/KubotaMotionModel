@@ -23,7 +23,7 @@ for i = 1: size(frameFolder,1)
         [out,motinfo] = gbvs(strcat(stimfolder, Feature.filename),params, motinfo);
 
         graphbase = {};
-        graph base.master_map = out.master_map;
+        graphbase.master_map = out.master_map;
         graphbase.top_level_feat_maps = out.top_level_feat_maps;
         graphbase.map_types = out.map_types;
         %graphbase.intermed_maps = out.intermed_maps;
