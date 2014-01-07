@@ -1,23 +1,20 @@
-%%%%%%%%%%%%%%%%%%%% Change Parameter here %%%%%%%%%%%%%%%%%%%%%%%%%%%
-datafolder = '../Data/prefDataCSV/';
-savefile = '..Data/EXPALLFixationsPref.mat';
-datasetSize = 450;
-testSubjectNumber = 12;
+%%%%%%%%%%%%%%%%%%%% Change Parameters here %%%%%%%%%%%%%%%%%%%%%%%%%%%
+datafolder = '../Data/rawFixation/';
+savefile = '../Data/allFixations.mat';
+datasetSize = 434;
+testSubjectNumber = 1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-EXPALLFixations = {};
-for imgidx = 1:datasetSize
-    Fixations = {};
-    EXPALLFixations{imgidx} = Fixations;
-end
+allFixations = {};
 
-for imgidx = 1:datasetSize
-    for subject = 1:testSubjectNumber
+
+for subject = 1:testSubjectNumber
+    for imgidx = 1:datasetSize
         datafile = sprintf('%s%02d%03d.csv', datafolder, subject, imgidx);
         eyedata = load(datafile);
         [data,Fix,Sac] = getFixations(eyedata);
-        EXPALLFixations{imgidx}{length(EXPALLFixations{imgidx})+1}=Fix;
+        allFixations{subject}{imgidx}=Fix;
     end
 end
 
-save(savefile, 'EXPALLFixations', '-v7.3');
+save(savefile, 'allFixations', '-v7.3');

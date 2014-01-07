@@ -7,7 +7,8 @@ function [sampleInfo, opt] = makeSampleInfo(opt_set,saccadeData,subjecti)
     M = opt.M;
     N = opt.N;
     tool = toolFunc(opt); % return distance on screen by angle? not really understand
-
+    
+    fprintf('Generating subject #%02d trainning data', subjecti);
     for order_fromfirst=1:opt.n_order_fromfirst % to nth saccade
         [thresholdLength, thresholdAngle, n_samples_each_region] = getThresholdLength(order_fromfirst, saccadeData, opt);
         opt.thresholdLength{order_fromfirst} = thresholdLength;
@@ -20,10 +21,10 @@ function [sampleInfo, opt] = makeSampleInfo(opt_set,saccadeData,subjecti)
 
     subjectSaccade=cell(12);
     rand_param = 0;
-%     for subjecti = 1:12
+
         [sample_saccade, testingsamles] = getIndiTTsamples(rand_param, saccadeData, opt, subjecti);
         subjectSaccade{subjecti} = sample_saccade;
-%     end
+
 
     fprintf('Creating infos_base...\n'); tic
     infos_base = zeros(M*N, 8);

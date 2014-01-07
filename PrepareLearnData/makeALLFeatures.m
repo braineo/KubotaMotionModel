@@ -2,7 +2,7 @@
 
 outputPath = '/Volumes/davinci/MATLAB/KubotaMotionModel/Data/featureMaps/'; %for free viewing task
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+frameFolder = csvimport('frameFolder.csv');
 motinfo = []; % information about the previous frame, blank for the first frame
 
 for i = 1: size(frameFolder,1)

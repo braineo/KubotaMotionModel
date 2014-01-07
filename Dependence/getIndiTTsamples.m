@@ -9,7 +9,7 @@ rand('state',rand_param);%set random generator to nth state
 sample_saccade = zeros(100000,8);
 testingsamles = {};
 c_sample_saccade=0;
-for imgidx=1:450
+for imgidx=1:opt.stimuliNumber
     subidx = indiviNum;
     fix_length = size(EXPALLFixations{imgidx}{subidx}.medianXY, 1);
     if(fix_length < 2)
