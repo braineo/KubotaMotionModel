@@ -35,7 +35,8 @@ opt.thresholdAngle = {};
 opt.thresholdAngleInit = {5, 8, 11, 14, 20, 57};
 
 %% ----------------- SETTING -----------------------------
-opt.n_order_fromfirst = 1;
+opt.featureMapPath = '../Data/featureMaps/';
+opt.n_order_fromfirst = 5;
 opt.thresholdLengthType = 's_uni'; % how threshold is determined
 opt.n_region = 3; % region number
 opt.enable_angle = 0;
@@ -44,8 +45,20 @@ opt.positiveSize = 0;
 opt.negativeSize = 0;
 opt.subjectNumber = 5;
 opt.stimuliNumber = 434;
+opt.frameRate = 24;
+opt.sampleRate = 120;
+opt.negaPosRatio = 10;
 
 %% ----------------- SETTING -----------------------------
+% determine threshold length
+    for order_fromfirst=1:opt.n_order_fromfirst % to nth saccade
+        [thresholdLength, thresholdAngle, n_samples_each_region] = getThresholdLength(order_fromfirst, allFixations, opt);
+        opt.thresholdLength{order_fromfirst} = thresholdLength;
+        opt.thresholdAngle{order_fromfirst} = thresholdAngle;
+        opt.n_samples_each_region{order_fromfirst} = n_samples_each_region;
+        clear thresholdLength thresholdAngle n_samples_each_region
+    end
+ %--------------------------------------------------------
 fprintf([num2str(toc), ' seconds \n']);
 
 info.opt = opt;
