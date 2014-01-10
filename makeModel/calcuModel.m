@@ -9,7 +9,7 @@
 % subjectIndex: ID of test subject
 
 % Try to use all samples for individuals
-function  [mInfo_tune, mNSS_tune, opt] = calcuModel20130926(opt_set, featureGBVS, sampleinfoStat, subjecti)
+function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjecti)
 
     opt = opt_set;
     opt.start_time = datestr(now,'dd-mmm-yyyy HH:MM:SS');
@@ -21,34 +21,34 @@ function  [mInfo_tune, mNSS_tune, opt] = calcuModel20130926(opt_set, featureGBVS
 
     num_feat_A = opt.featNumber; %total number of features
     if(opt.enable_angle)
-        featurePixelValueNear = zeros(400000, 3*num_feat_A*opt.n_region); % 3 directions, feature numbers, n regions
-        featurePixelValueFar = zeros(200000000,3*num_feat_A*opt.n_region);
+        featurePixelValueNear = zeros(opt.posSampleSizeAll, 3*num_feat_A*opt.n_region); % 3 directions, feature numbers, n regions
+        featurePixelValueFar = zeros(opt.posSampleSizeAll*opt.negaPosRatio, 3*num_feat_A*opt.n_region);
     else
-        featurePixelValueNear = zeros(400000, num_feat_A*opt.n_region);
-        featurePixelValueFar = zeros(200000000,num_feat_A*opt.n_region);
+        featurePixelValueNear = zeros(opt.posSampleSizeAll, num_feat_A*opt.n_region);
+        featurePixelValueFar = zeros(opt.posSampleSizeAll*opt.negaPosRatio, num_feat_A*opt.n_region);
     end
     
     %% 
 
     fprintf('Get training sample...\n');
-    positiveSample = [];
-    negativeSample = [];
-    
+ 
     countNearAll = 0;
     countFarAll = 0;
     
     tic
     for videoi = 1:opt.stimuliNumber
         % postive and negative sample (pixel position)
-        sampleinfo = makeSampleInfo(opt, EXPALLFixations, subjecti, videoi);
-        
-
-    
-        fprintf('Creating feature matrix...\n'); 
-
-
+        sampleinfo = makeSampleInfo(opt, allFixations, subjecti, videoi);
+        [pos, neg] = getFeatureSample(opt, sampleinfo, videoi);
+        posSize = size(pos, 1);
+        negSize = size(neg, 1);
+        featurePixelValueNear(countNearAll+1: countNearAll+posSize, :) = pos;
+        featurePixelValueFar(countFarAll+1: countFarAll+negSize, :) = neg;
+        countNearAll = countNearAll + posSize;
+        countFarAll = countFarAll + negSize;
+        fprintf('Creating feature matrix...\n');    
+    end
     fprintf([num2str(toc), ' seconds \n']);
-
     %%  start to train
 
     featureMat = [featurePixelValueNear(1:countNearAll,:); featurePixelValueFar(1:countFarAll,:)];

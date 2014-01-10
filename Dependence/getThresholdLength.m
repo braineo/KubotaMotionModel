@@ -8,7 +8,7 @@ fprintf('Calculate thresholdLength ...'); tic
 
 dis = zeros(100000,1);
 c_sample_saccade=0;
-for subidx=1:length(EXPALLFixations)
+for subidx=1:opt.subjectNumber
     for imgidx=1:opt.stimuliNumber
         fix_length = size(EXPALLFixations{subidx}{imgidx}.medianXY, 1);
         if(fix_length < 2)
@@ -34,7 +34,7 @@ for subidx=1:length(EXPALLFixations)
             
             if(valid_flag == 1)
                 c_sample_saccade = c_sample_saccade + 1;
-                dis(c_sample_saccade,:) = [t_dis];
+                dis(c_sample_saccade,:) = t_dis;
             end
 
             clear t_px t_py t_nx t_ny t_dis valid_flag

@@ -1,3 +1,4 @@
+% generate fixations (.m) from raw fixations (csv file)
 %%%%%%%%%%%%%%%%%%%% Change Parameters here %%%%%%%%%%%%%%%%%%%%%%%%%%%
 datafolder = '../Data/rawFixation/';
 savefile = '../Data/allFixations.mat';

@@ -1,3 +1,4 @@
+% hash table for footage to footage number
 hashKeyValue = csvimport('footageNumMap.csv');
 key = hashKeyValue(:,1);
 value = hashKeyValue(:,2);

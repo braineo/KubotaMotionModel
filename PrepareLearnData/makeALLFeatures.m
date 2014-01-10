@@ -1,3 +1,4 @@
+% generate feature maps of video
 %%%%%%%%%%%%%%%%%% Change parameter here %%%%%%%%%%%%%%%%%%%
 
 outputPath = '/Volumes/davinci/MATLAB/KubotaMotionModel/Data/featureMaps/'; %for free viewing task

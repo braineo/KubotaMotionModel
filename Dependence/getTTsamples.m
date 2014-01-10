@@ -9,7 +9,7 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     testingsamles = {};
     c_sample_saccade=0;
 
-    fix_length = size(allFixations{videoi}{subjecti}.medianXY, 1);
+    fix_length = size(allFixations{subjecti}{videoi}.medianXY, 1);
     
     if(fix_length < 2)
         return
@@ -18,14 +18,14 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     for fixIndex=2:fix_length
         valid_flag = 1;
 
-        if(allFixations{videoi}{subjecti}.medianXY(fixIndex, 1) < 0 || allFixations{videoi}{subjecti}.medianXY(fixIndex, 2) < 0 || ...
-           allFixations{videoi}{subjecti}.medianXY(fixIndex, 1) >= opt.width || allFixations{videoi}{subjecti}.medianXY(fixIndex, 2) >= opt.height)
+        if(allFixations{subjecti}{videoi}.medianXY(fixIndex, 1) < 0 || allFixations{subjecti}{videoi}.medianXY(fixIndex, 2) < 0 || ...
+           allFixations{subjecti}{videoi}.medianXY(fixIndex, 1) >= opt.width || allFixations{subjecti}{videoi}.medianXY(fixIndex, 2) >= opt.height)
             valid_flag = 0;
         end
-        t_px = allFixations{videoi}{subjecti}.medianXY(fixIndex-1, 1)/opt.minimize_scale; % previous fixation
-        t_py = allFixations{videoi}{subjecti}.medianXY(fixIndex-1, 2)/opt.minimize_scale;
-        t_nx = allFixations{videoi}{subjecti}.medianXY(fixIndex, 1)/opt.minimize_scale; % current fixation
-        t_ny = allFixations{videoi}{subjecti}.medianXY(fixIndex, 2)/opt.minimize_scale;
+        t_px = allFixations{subjecti}{videoi}.medianXY(fixIndex-1, 1)/opt.minimize_scale; % previous fixation
+        t_py = allFixations{subjecti}{videoi}.medianXY(fixIndex-1, 2)/opt.minimize_scale;
+        t_nx = allFixations{subjecti}{videoi}.medianXY(fixIndex, 1)/opt.minimize_scale; % current fixation
+        t_ny = allFixations{subjecti}{videoi}.medianXY(fixIndex, 2)/opt.minimize_scale;
         t_dis = norm([t_px-t_nx t_py-t_ny]);
         
         startM = allFixations{subjecti}{videoi}.start(fixIndex);

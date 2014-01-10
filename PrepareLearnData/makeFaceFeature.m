@@ -1,3 +1,4 @@
+% generate face feature map
 clear all
 
 %%%%%%%%%%%%%%%%%%%% Change Parameter here %%%%%%%%%%%%%%%%%%%%%%%%%%%
