@@ -10,13 +10,12 @@ function sampleInfo = makeSampleInfo(opt_set,saccadeData,subjecti, videoi)
     tool = toolFunc(opt); % return distance on screen by angle? not really understand
     sampleInfo = {};
     
-    fprintf('Generating subject #%02d video #%03d trainning data', subjecti, videoi); tic
+    fprintf('Subject #%02d video #%03d trainning data...\n', subjecti, videoi);
 
     nthSaccade = opt.n_order_fromfirst;
 
     sample_saccade = getTTsamples(opt, saccadeData, subjecti, videoi);
-
-    fprintf('Creating infos_base...\n');
+    
     infos_base = zeros(M*N, 9);
     for tm=1:M
         for tn=1:N
@@ -36,8 +35,6 @@ function sampleInfo = makeSampleInfo(opt_set,saccadeData,subjecti, videoi)
     thresholdLength = opt.thresholdLength{nthi};
 
     sampleSaccadeOrderSelected = sample_saccade(find(sample_saccade(:,2)<=nthi&sample_saccade(:,8)==1),:);
-    
-    fprintf('Prepare Training data...\n'); tic       
     
     sampleIndexSelected = sampleSaccadeOrderSelected(find(sampleSaccadeOrderSelected(:,1)==videoi),:);
     if(size(sampleIndexSelected, 1)==0)
@@ -95,4 +92,3 @@ function sampleInfo = makeSampleInfo(opt_set,saccadeData,subjecti, videoi)
         sampleInfo{2} = infomatRegionedFar(:,[2,3,6,8,9]);
         % 1X, 2. Y, 3. Region number, 4. Angle(index) 5. timeTag (frame number)
     end
-    fprintf([num2str(toc), ' seconds \n']);

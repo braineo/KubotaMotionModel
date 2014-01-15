@@ -3,8 +3,6 @@
 % This version only apply for motion model!
 function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
 
-    fprintf('Selecting training & testingsamles ...'); tic
-
     sample_saccade = zeros(100000,9);
     testingsamles = {};
     c_sample_saccade=0;
@@ -49,7 +47,6 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     sample_saccade = sample_saccade(1:c_sample_saccade,:);
 
     %fclose(fid);
-    fprintf([num2str(toc), ' seconds \n']);
 
-    fprintf('trainingsample: %d, testingsample: %d\n subject Number: #%02d video: #%03d\n',...
-            c_sample_saccade, length(testingsamles), subjecti, videoi);
+    fprintf('trainingsample: %d, testingsample: %d\n',...
+            c_sample_saccade, length(testingsamles));

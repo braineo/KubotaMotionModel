@@ -10,7 +10,7 @@
 
 % Try to use all samples for individuals
 function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjecti)
-
+    tic
     opt = opt_set;
     opt.start_time = datestr(now,'dd-mmm-yyyy HH:MM:SS');
     M = opt.M; % original resolution X
@@ -35,7 +35,6 @@ function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjec
     countNearAll = 0;
     countFarAll = 0;
     
-    tic
     for videoi = 1:opt.stimuliNumber
         % postive and negative sample (pixel position)
         sampleinfo = makeSampleInfo(opt, allFixations, subjecti, videoi);
@@ -45,17 +44,15 @@ function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjec
         featurePixelValueNear(countNearAll+1: countNearAll+posSize, :) = pos;
         featurePixelValueFar(countFarAll+1: countFarAll+negSize, :) = neg;
         countNearAll = countNearAll + posSize;
-        countFarAll = countFarAll + negSize;
-        fprintf('Creating feature matrix...\n');    
+        countFarAll = countFarAll + negSize;   
     end
-    fprintf([num2str(toc), ' seconds \n']);
     %%  start to train
 
     featureMat = [featurePixelValueNear(1:countNearAll,:); featurePixelValueFar(1:countFarAll,:)];
 
     labelMat = [ones(countNearAll, 1); zeros(countFarAll, 1)];
 
-    fprintf('Training...\n'); tic
+    fprintf('Training...\n');
     info_tune = {};
 
     fprintf('|tune|');

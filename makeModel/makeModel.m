@@ -47,7 +47,9 @@ opt.stimuliNumber = 434; % number of stimuli
 opt.frameRate = 24; % video frame rate
 opt.sampleRate = 120; % eye tracker sample rate
 opt.posSampleSizeAll = 400000; % size of positive sample for 1 test subject
-opt.negaPosRatio = 10; % ratio of negaSize:posSize
+opt.negaPosRatio = 20; % ratio of negaSize:posSize
+opt.sampleLength = 5; % second
+opt.allFrameNumber = opt.frameRate * opt.sampleLength;
 %% ----------------- SETTING -----------------------------
 % determine threshold length
 
