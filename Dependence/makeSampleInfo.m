@@ -87,8 +87,8 @@ function sampleInfo = makeSampleInfo(opt_set,saccadeData,subjecti, videoi)
         infomatRegionedFar = [infomatRegionedFar; infoAll(find(infoAll(:,4)>opt.th_far & infoAll(:,6) == k),:)];
     end
     
-    for regioni = 1:opt.n_region
+    %for regioni = 1:opt.n_region
         sampleInfo{1} = infomatRegionedNear(:,[2,3,6,8,9]);
         sampleInfo{2} = infomatRegionedFar(:,[2,3,6,8,9]);
         % 1X, 2. Y, 3. Region number, 4. Angle(index) 5. timeTag (frame number)
-    end
+    %end

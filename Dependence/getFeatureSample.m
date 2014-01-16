@@ -33,7 +33,7 @@ function [featurePixelValueNear, featurePixelValueFar] = getFeatureSample(opt, s
             f = cell(1,3);
             m = cell(1,3);
             
-            fprintf('fetching feature map of frame#%03d\n', framei);
+            % fprintf('fetching feature map of frame#%03d\n', framei);
             for scaleLeveli = 1: 3
                 c{scaleLeveli} = imresize(footageFeatures{framei}.graphbase.scale_maps{1}{scaleLeveli}, [M N], 'bilinear');
                 i{scaleLeveli} = imresize(footageFeatures{framei}.graphbase.scale_maps{3}{scaleLeveli}, [M N], 'bilinear');
