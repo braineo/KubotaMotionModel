@@ -42,7 +42,7 @@ opt.enable_angle = 0;
 opt.featNumber = 15; % feature numbers in 1 region
 % opt.positiveSize = 0;
 % opt.negativeSize = 0;
-opt.subjectNumber = 1; % number of test subjects
+opt.subjectNumber = 9; % number of test subjects
 opt.stimuliNumber = 434; % number of stimuli
 opt.frameRate = 24; % video frame rate
 opt.sampleRate = 120; % eye tracker sample rate
@@ -72,7 +72,7 @@ for subjecti = 1:opt.subjectNumber
     RET = {};
     [RET.mInfo_tune, RET.mNSS_tune, RET.opt_ret] = calcuModel(opt,allFixations, subjecti);
     featureWeight{subjecti} = RET;
-    clear opt RET
+    clear RET
     
 end
 
