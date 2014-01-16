@@ -89,3 +89,4 @@ function [featurePixelValueNear, featurePixelValueFar] = getFeatureSample(opt, s
             end
         end
     end
+    fprintf('pos: %d, neg: %d\n', countNearAll, countFarAll)

@@ -38,6 +38,9 @@ function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjec
     for videoi = 1:opt.stimuliNumber
         % postive and negative sample (pixel position)
         sampleinfo = makeSampleInfo(opt, allFixations, subjecti, videoi);
+        if(isempty(sampleinfo))
+            continue
+        end
         [pos, neg] = getFeatureSample(opt, sampleinfo, videoi);
         posSize = size(pos, 1);
         negSize = size(neg, 1);

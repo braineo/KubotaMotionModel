@@ -48,5 +48,5 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
 
     %fclose(fid);
 
-    fprintf('trainingsample: %d, testingsample: %d\n',...
-            c_sample_saccade, length(testingsamles));
+    fprintf('training fixation: %d\n',...
+            c_sample_saccade);
