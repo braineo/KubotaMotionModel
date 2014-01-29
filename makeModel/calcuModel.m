@@ -8,7 +8,6 @@
 % faceFeature: Gaussian face feature
 % subjectIndex: ID of test subject
 
-% Try to use all samples for individuals
 function  [mInfo_tune, mNSS_tune, opt] = calcuModel(opt_set,allFixations, subjecti)
     tic
     opt = opt_set;

@@ -72,10 +72,10 @@ for subjecti = 1:opt.subjectNumber
     RET = {};
     [RET.mInfo_tune, RET.mNSS_tune, RET.opt_ret] = calcuModel(opt,allFixations, subjecti);
     featureWeight{subjecti} = RET;
-    clear opt RET
+    clear RET
     
 end
 
 info.end_time = datestr(now,'dd-mmm-yyyy HH:MM:SS')
-savefile = sprintf('../Output/model_v0_1_%s.mat', info.time_stamp);
+savefile = sprintf('../Output/feature_weight_%s.mat', info.time_stamp);
 save(savefile,'featureWeight','info','-v7.3');
