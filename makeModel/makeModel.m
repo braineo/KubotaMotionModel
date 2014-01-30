@@ -37,6 +37,7 @@ opt.thresholdAngleInit = {5, 8, 11, 14, 20, 57};
 opt.featureMapPath = '../Data/featureMaps/';
 opt.n_order_fromfirst = 5; % from the first to nth saccade are used
 opt.thresholdLengthType = 's_uni'; % how threshold is determined
+opt.thresholdSubjectIndex = 1:12; % data of subjects with these indices is used to calculate threshold
 opt.n_region = 3; % region number
 opt.enable_angle = 0;
 opt.featNumber = 15; % feature numbers in 1 region
