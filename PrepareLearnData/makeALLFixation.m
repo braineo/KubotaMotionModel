@@ -3,7 +3,7 @@
 datafolder = '../Data/rawFixation/';
 savefile = '../Data/allFixations.mat';
 datasetSize = 434;
-testSubjectNumber = 9;
+testSubjectNumber = 25;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 allFixations = {};

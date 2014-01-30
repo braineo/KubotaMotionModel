@@ -43,7 +43,7 @@ opt.enable_angle = 0;
 opt.featNumber = 15; % feature numbers in 1 region
 % opt.positiveSize = 0;
 % opt.negativeSize = 0;
-opt.subjectNumber = 9; % number of test subjects
+opt.subjectNumber = 1; % number of test subjects
 opt.stimuliNumber = 434; % number of stimuli
 opt.frameRate = 24; % video frame rate
 opt.sampleRate = 120; % eye tracker sample rate
@@ -55,14 +55,14 @@ opt.allFrameNumber = opt.frameRate * opt.sampleLength;
 % determine threshold length
 
 load('../data/allFixations.mat');
-    for order_fromfirst=1:opt.n_order_fromfirst % to nth saccade
-        [thresholdLength, thresholdAngle, n_samples_each_region] = getThresholdLength(order_fromfirst, allFixations, opt);
-        opt.thresholdLength{order_fromfirst} = thresholdLength;
-        opt.thresholdAngle{order_fromfirst} = thresholdAngle;
-        opt.n_samples_each_region{order_fromfirst} = n_samples_each_region;
-        clear thresholdLength thresholdAngle n_samples_each_region
-    end
- %--------------------------------------------------------
+for order_fromfirst=1:opt.n_order_fromfirst % to nth saccade
+    [thresholdLength, thresholdAngle, n_samples_each_region] = getThresholdLength(order_fromfirst, allFixations, opt);
+    opt.thresholdLength{order_fromfirst} = thresholdLength;
+    opt.thresholdAngle{order_fromfirst} = thresholdAngle;
+    opt.n_samples_each_region{order_fromfirst} = n_samples_each_region;
+    clear thresholdLength thresholdAngle n_samples_each_region
+end
+%--------------------------------------------------------
 fprintf([num2str(toc), ' seconds \n']);
 
 info.opt = opt;

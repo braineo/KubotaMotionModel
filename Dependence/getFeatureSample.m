@@ -5,8 +5,8 @@ function [featurePixelValueNear, featurePixelValueFar] = getFeatureSample(opt, s
     % load feature map for a video
     load(featureMapFile);
     
-    % 1. videoi, 2.X, 3. Y, 4. Region number, 5. Angle(index) 6. timeTag (frame number)
-    timeTag = unique(positiveSample(:,6));
+    % 1.X, 2. Y, 3. Region number, 4. Angle(index) 5. timeTag (frame number)
+    timeTag = unique(positiveSample(:,5));
     num_feat_A = opt.featNumber;
     % Allocate storage
     if(opt.enable_angle)
