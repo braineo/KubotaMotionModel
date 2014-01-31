@@ -6,7 +6,7 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     sample_saccade = zeros(100000,9);
     testingsamles = {};
     c_sample_saccade=0;
-    if(~isempty(allFixations{subjecti}{videoi}))
+    if(isempty(allFixations{subjecti}{videoi}))
         sample_saccade = zeros(1,9);
         return
     else
