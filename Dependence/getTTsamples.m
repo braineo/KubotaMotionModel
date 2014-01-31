@@ -6,10 +6,14 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     sample_saccade = zeros(100000,9);
     testingsamles = {};
     c_sample_saccade=0;
-
+    if(~isempty(allFixations{subjecti}{videoi}))
+        sample_saccade = zeros(1,9);
+        return
+    else
     fix_length = size(allFixations{subjecti}{videoi}.medianXY, 1);
     
     if(fix_length < 2)
+        sample_saccade = zeros(1,9);
         return
     end
 
@@ -47,6 +51,6 @@ function sample_saccade = getTTsamples(opt, allFixations, subjecti, videoi)
     sample_saccade = sample_saccade(1:c_sample_saccade,:);
 
     %fclose(fid);
-
+    end
     fprintf('training fixation: %d\n',...
             c_sample_saccade);
